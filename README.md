@@ -81,6 +81,10 @@ TEMPLATES = [
     },
 ]
 
+To view the list of migrations so far, use the following:
+
+```$ python3 manage.py showmigrations```
+
 
 ### Running Tests
 
