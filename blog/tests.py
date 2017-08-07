@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from .models import Entry
 
-# Create your tests here.
 class EntryModelTest(TestCase):
     
     def test_string_representation(self):
@@ -11,7 +10,22 @@ class EntryModelTest(TestCase):
         
     def test_verbose_name_plural(self):
         self.assertEqual(str(Entry._meta.verbose_name_plural), "entries")
-        
+    
+    def test_get_absolute_url(self):
+        user = get_user_model().objects.create(username='some_user')
+        entry = Entry.objects.create(title="My entry title", author=user)
+        self.assertIsNotNone(entry.get_absolute_url())
+
+class EntryViewTest(TestCase):
+    
+    def setUp(self):
+        self.user = get_user_model().objects.create(username='some_user')
+        self.entry = Entry.objects.create(title='1-title', body='1-body', author=self.user)
+    
+    def test_basic_view(self):
+        response = self.client.get(self.entry.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+    
 class ProjectTests(TestCase):
     
     def test_homepage(self):
