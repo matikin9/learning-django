@@ -84,7 +84,7 @@ TEMPLATES = [
 
 ### Running Tests
 
-```$ python manage.py test blog```
+```$ python3 manage.py test blog```
 
 ### Testing Resources
 
