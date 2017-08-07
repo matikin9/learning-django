@@ -26,6 +26,14 @@ class EntryViewTest(TestCase):
         response = self.client.get(self.entry.get_absolute_url())
         self.assertEqual(response.status_code, 200)
     
+    def test_title_in_entry(self):
+        response = self.client.get(self.entry.get_absolute_url())
+        self.assertContains(response, self.entry.title)
+        
+    def test_body_in_entry(self):
+        response = self.client.get(self.entry.get_absolute_url())
+        self.assertContains(response, self.entry.body)
+        
 class ProjectTests(TestCase):
     
     def test_homepage(self):
