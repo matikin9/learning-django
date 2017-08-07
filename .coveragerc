@@ -1,0 +1,9 @@
+[run]
+include = ./*
+branch = True
+
+[report]
+exclude_lines =
+    raise ImportError
+    
+    if __name__ == "__main__":
